@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<!--
+    Palto Studio
+    Developed by Noah Bussinger
+    2022
+-->
+
+<html>
+
+    <head>
+        
+        <title>Procedural</title>
+        
+        <meta charset="utf-8">
+        <meta name="application-name" content="Procedural">
+        <meta name="description" content="Palto Studio, Application">
+        <meta name="keywords" content="Palto Studio, Application">
+        <meta name="author" content="Palto Studio, Developed by Noah Bussinger, 2022">
+        <meta name="viewport" content="viewport-fit=cover, width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        
+
+            <link rel="stylesheet" href="style.css" type="text/css" charset="utf-8" />
+    
+    
+        <script src="libraries/typescript/typescript-script.js"></script>
+
+        <script src="libraries/babylon.5.29.0/babylon.max.js"></script>
+        <script src="libraries/babylon.5.29.0/loaders/babylonjs.loaders.min.js"></script>
+        <script src="libraries/babylon.5.29.0/materialsLibrary/babylon.customMaterial.min.js"></script>
+        <script src="libraries/babylon.5.29.0/inspector/babylon.inspector.bundle.js"></script>
+        <script src="libraries/babylon.5.29.0/gui/babylon.gui.min.js"></script>
+
+        <script src="libraries/generic-noise-3d.js"></script>
+        <script src="libraries/perlin-noise-3d.js"></script>
+        <script src="libraries/stats.js"></script>
+        <script src="libraries/seedrandom.min.js"></script>
+
+
+            <script type="text/typescript" src="utilities/Utils.ts"></script>
+            <script type="text/typescript" src="utilities/Sync.ts"></script>
+            <script type="text/typescript" src="utilities/Singleton.ts"></script>
+            <script type="text/typescript" src="utilities/objectarray/ObjectArray.ts"></script>
+            <script type="text/typescript" src="utilities/objectarray/SmartObjectArray.ts"></script>
+            <script type="text/typescript" src="utilities/statemachine/State.ts"></script>
+            <script type="text/typescript" src="utilities/statemachine/StateMachine.ts"></script>
+             
+                
+                <script type="text/typescript" src="game/engine/Engine.ts"></script>  
+                <script type="text/typescript" src="game/engine/EngineExtensions.ts"></script>    
+                <script type="text/typescript" src="game/engine/EngineAssets.ts"></script>      
+                <script type="text/typescript" src="game/engine/config/LoadConfig.ts"></script>    
+                <script type="text/typescript" src="game/engine/utils/EngineUtils.ts"></script> 
+                <script type="text/typescript" src="game/engine/utils/EngineUtilsShader.ts"></script> 
+                <script type="text/typescript" src="game/engine/utils/BoundingCache.ts"></script> 
+      
+                <script type="text/typescript" src="game/entities/Models.ts"></script>    
+                <script type="text/typescript" src="game/entities/EntityManager.ts"></script>        
+                <script type="text/typescript" src="game/entities/lod/AbstractLOD.ts"></script>        
+                <script type="text/typescript" src="game/entities/lod/LOD.ts"></script>        
+                <script type="text/typescript" src="game/entities/lod/EntityLOD.ts"></script>      
+                <script type="text/typescript" src="game/entities/spawn/AbstractEntitySpawnerPlanet.ts"></script>        
+               
+                
+            <script type="text/typescript" src="initialize.ts"></script>
+
+
+    </head>
+    
+    <body>
+
+    </body>
+    
+</html>
