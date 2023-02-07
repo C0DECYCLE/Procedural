@@ -6,8 +6,8 @@
 
 precision highp float;
 
-in vec3 normalPosition;
-in float waveHeight;
+//in vec3 normalPosition;
+//in float waveHeight;
 in vec3 triPosition;
 
 void main(void) {
@@ -18,15 +18,15 @@ void main(void) {
     
     //vec3 normalColor = faceNormal * 0.5 + 0.5;
 
-    vec3 waterHighColor = vec3(0.28, 1.0, 0.94);
-    vec3 waterDeepColor = vec3(0.03, 0.24, 0.38);
-    float waterDepth = 1.0 - waveHeight;
-    vec3 waterColor = mix(waterHighColor, waterDeepColor, waterDepth);
+    //vec3 waterHighColor = vec3(0.28, 1.0, 0.94);
+    //vec3 waterDeepColor = vec3(0.03, 0.24, 0.38);
+    //float waterDepth = 1.0 - waveHeight;//
+    //vec3 waterColor = mix(waterHighColor, waterDeepColor, waterDepth);
 
-    if (waterDepth < 0.2) {
+    //if (waterDepth < 0.2) {
     
-        waterColor = vec3(1.0, 1.0, 1.0);
-    }
+    //    waterColor = vec3(1.0, 1.0, 1.0);
+    //}
 
     //gl_FragColor = vec4(mix(waterColor, normalColor, 0.5), 1.0);
     //gl_FragColor = vec4(waterColor, 1.0);

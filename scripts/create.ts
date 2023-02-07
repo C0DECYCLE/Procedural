@@ -35,9 +35,9 @@ const create = (engine: BABYLON.Engine): BABYLON.Scene => {
             mesh.material = chunkMaterial;
             mesh.alwaysSelectAsActiveMesh = true;
 
-            const numPerSide: int = 8;
+            const numPerSide: int = 32;
             const size: int = 16;
-            const sizeAndSpacing: int = size + 2;
+            const sizeAndSpacing: int = size + 0;
 
             mesh.thinInstanceRegisterAttribute("size", 1);
 
