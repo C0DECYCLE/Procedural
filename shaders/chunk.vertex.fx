@@ -35,7 +35,7 @@ void main(void) {
     vertexPosition.xz *= size;
 
     //waveHeight = (snoise((instanceWorldPosition.xz + vertexPosition.xz) * noiseScale + time * 0.0002) * 0.5 + 0.5);
-    float waveHeight = (snoise((instanceWorldPosition.xz + vertexPosition.xz) * noiseScale + time * 0.0002) * 0.5 + 0.5);
+    float waveHeight = (snoise((instanceWorldPosition.xz + vertexPosition.xz) * noiseScale + time * 0.0001) * 0.5 + 0.5);
 
     if (vertexPosition.y > 0.0) {
 
