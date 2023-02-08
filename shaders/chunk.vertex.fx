@@ -10,6 +10,7 @@ uniform mat4 viewProjection;
 uniform float time;
 
 attribute vec3 position;
+attribute float awake;
 attribute float size;
 
 #include<instancesDeclaration>
@@ -20,30 +21,37 @@ out vec3 normalPosition;
 
 void main(void) {
 
-    #include<instancesVertex>
+    if (awake == 0.0) {
 
-    vec3 instanceWorldPosition = (finalWorld * vec4(0.0, 0.0, 0.0, 1.0)).xyz;
-    vec3 vertexPosition = position;
+        gl_Position = vec4(0.0, 0.0, 0.0, 1.0);
 
-    //normalPosition = vec3(snoise(permute(instanceWorldPosition + vertexPosition * 3642.0).xy * 9245.0), snoise(permute(instanceWorldPosition + vertexPosition * 9123.0).yz * 5551.0), snoise(permute(instanceWorldPosition + vertexPosition * 1726.0).xz * 6223.0));
+    } else if (awake == 1.0) {
 
-    float maxHeight = 16.0;
-    float noiseScale = 0.025;
+        #include<instancesVertex>
 
-    vertexPosition.xz *= size;
+        vec3 instanceWorldPosition = (finalWorld * vec4(0.0, 0.0, 0.0, 1.0)).xyz;
+        vec3 vertexPosition = position;
 
-    float waveHeight = (snoise((instanceWorldPosition.xz + vertexPosition.xz) * noiseScale + time * 0.0001) * 0.5 + 0.5);
+        //normalPosition = vec3(snoise(permute(instanceWorldPosition + vertexPosition * 3642.0).xy * 9245.0), snoise(permute(instanceWorldPosition + vertexPosition * 9123.0).yz * 5551.0), snoise(permute(instanceWorldPosition + vertexPosition * 1726.0).xz * 6223.0));
 
-    if (vertexPosition.y > 0.0) {
+        float maxHeight = 16.0;
+        float noiseScale = 0.025;
 
-        vertexPosition.y = waveHeight * maxHeight;
+        vertexPosition.xz *= size;
 
-    } else {
+        float waveHeight = (snoise((instanceWorldPosition.xz + vertexPosition.xz) * noiseScale + time * 0.0001) * 0.5 + 0.5);
 
-        vertexPosition.y = 0.0;
+        if (vertexPosition.y > 0.0) {
+
+            vertexPosition.y = waveHeight * maxHeight;
+
+        } else {
+
+            vertexPosition.y = 0.0;
+        }
+
+        normalPosition = instanceWorldPosition + vertexPosition;
+
+        gl_Position = viewProjection * finalWorld * vec4(vertexPosition, 1.0);
     }
-
-    normalPosition = instanceWorldPosition + vertexPosition;
-
-    gl_Position = viewProjection * finalWorld * vec4(vertexPosition, 1.0);
 }
