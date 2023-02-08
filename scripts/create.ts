@@ -26,7 +26,7 @@ const create = (engine: BABYLON.Engine): BABYLON.Scene => {
 
     const subdivide = (target: BABYLON.Vector3, origin: BABYLON.Vector3, size: float, result: [BABYLON.Vector3, float][]): void => {
 
-        if (BABYLON.Vector3.DistanceSquared(target, origin) < (size * 0.75) ** 2 && size > 16) {
+        if (BABYLON.Vector3.DistanceSquared(target, origin) < (size * 0.75) ** 2 && size > 32) {
 
             const half = size / 2;
             const quarter = half / 2;
@@ -43,9 +43,7 @@ const create = (engine: BABYLON.Engine): BABYLON.Scene => {
     };
 
     const res: [BABYLON.Vector3, float][] = [];
-    console.time("quadtree");
     subdivide(new BABYLON.Vector3(), new BABYLON.Vector3(), 512, res);
-    console.timeEnd("quadtree");
     console.log(res.length);
 
     BABYLON.SceneLoader.LoadAssetContainer("/assets/", "chunk.obj", scene, (container: BABYLON.AssetContainer): void => {
@@ -73,10 +71,12 @@ const create = (engine: BABYLON.Engine): BABYLON.Scene => {
         container.addAllToScene();
     });
 
+    /*
     const pipeline: BABYLON.DefaultRenderingPipeline = new BABYLON.DefaultRenderingPipeline("pipeline", true, scene, [camera]);
     pipeline.samples = engine.getCaps().maxMSAASamples;
     pipeline.fxaaEnabled = true;
     pipeline.imageProcessingEnabled = false;
+    */
 
     return scene;
 };
