@@ -4,6 +4,8 @@
     2023
 */
 
+let freeze: boolean = false;
+
 const chunkManager = (mesh: BABYLON.Mesh): void => {
 
     const scene: BABYLON.Scene = mesh.getScene();
@@ -32,6 +34,8 @@ const chunkManager = (mesh: BABYLON.Mesh): void => {
     }
 
     scene.onBeforeRenderObservable.add((): void => {
+
+        if (freeze) return;
 
         const chunks: [BABYLON.Vector3, float][] = quadtree(scene.cameras[0].position, new BABYLON.Vector3(), area);
 

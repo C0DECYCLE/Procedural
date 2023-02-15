@@ -16,10 +16,9 @@ window.addEventListener("compile", (_event: Event): void => {
     const scene: BABYLON.Scene = create(engine);
     scene.debugLayer.show({ embedMode: true });
 
-    engine.setHardwareScalingLevel(1 / 1);
+    engine.setHardwareScalingLevel(1 / 2);
     engine.runRenderLoop((): void => {
 
-        update(scene);
         scene.render();
     });
 

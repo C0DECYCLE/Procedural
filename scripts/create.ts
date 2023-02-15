@@ -25,12 +25,10 @@ const create = (engine: BABYLON.Engine): BABYLON.Scene => {
         container.addAllToScene();
     });
 
-    /*
     const pipeline: BABYLON.DefaultRenderingPipeline = new BABYLON.DefaultRenderingPipeline("pipeline", true, scene, [camera]);
     pipeline.samples = engine.getCaps().maxMSAASamples;
     pipeline.fxaaEnabled = true;
     pipeline.imageProcessingEnabled = false;
-    */
 
     return scene;
 };

@@ -7,7 +7,6 @@
 precision highp float;
 
 uniform mat4 viewProjection;
-uniform float time;
 
 attribute vec3 position;
 attribute float awake;
@@ -15,9 +14,10 @@ attribute float size;
 
 #include<instancesDeclaration>
 
-out vec3 normalPosition;
+out vec3 instanceWorldPosition;
+out vec3 vertexPosition;
 
-#include<simplexNoise>
+#include<tesselate>
 
 void main(void) {
 
@@ -29,29 +29,12 @@ void main(void) {
 
         #include<instancesVertex>
 
-        vec3 instanceWorldPosition = (finalWorld * vec4(0.0, 0.0, 0.0, 1.0)).xyz;
-        vec3 vertexPosition = position;
-
-        //normalPosition = vec3(snoise(permute(instanceWorldPosition + vertexPosition * 3642.0).xy * 9245.0), snoise(permute(instanceWorldPosition + vertexPosition * 9123.0).yz * 5551.0), snoise(permute(instanceWorldPosition + vertexPosition * 1726.0).xz * 6223.0));
-
-        float maxHeight = 16.0;
-        float noiseScale = 0.025;
-
+        instanceWorldPosition = (finalWorld * vec4(0.0, 0.0, 0.0, 1.0)).xyz;
+        vertexPosition = position;
         vertexPosition.xz *= size;
 
-        float waveHeight = (snoise((instanceWorldPosition.xz + vertexPosition.xz) * noiseScale + time * 0.0001) * 0.5 + 0.5);
+        vec3 finalPosition = tesselate(instanceWorldPosition, vertexPosition);
 
-        if (vertexPosition.y > 0.0) {
-
-            vertexPosition.y = waveHeight * maxHeight;
-
-        } else {
-
-            vertexPosition.y = 0.0;
-        }
-
-        normalPosition = instanceWorldPosition + vertexPosition;
-
-        gl_Position = viewProjection * finalWorld * vec4(vertexPosition, 1.0);
+        gl_Position = viewProjection * finalWorld * vec4(finalPosition, 1.0);
     }
 }
