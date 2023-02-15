@@ -16,6 +16,7 @@ attribute float size;
 
 out vec3 instanceWorldPosition;
 out vec3 vertexPosition;
+out float isEdge;
 
 #include<tesselate>
 
@@ -32,6 +33,15 @@ void main(void) {
         instanceWorldPosition = (finalWorld * vec4(0.0, 0.0, 0.0, 1.0)).xyz;
         vertexPosition = position;
         vertexPosition.xz *= size;
+
+        if (max(abs(position.x), abs(position.z)) == 0.5/* && abs(position.x) + abs(position.z) != 1.0*/) {
+
+            isEdge = 1.0;
+
+        } else {
+
+            isEdge = 0.0;
+        }
 
         vec3 finalPosition = tesselate(instanceWorldPosition, vertexPosition);
 

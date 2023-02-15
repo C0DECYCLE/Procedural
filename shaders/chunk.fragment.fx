@@ -8,6 +8,7 @@ precision highp float;
 
 in vec3 instanceWorldPosition;
 in vec3 vertexPosition;
+in float isEdge;
 
 #include<tesselate>
 
@@ -19,7 +20,12 @@ void main(void) {
     vec3 dFdyPosition = vec3(dFdy(finalPosition.x), dFdy(finalPosition.y), dFdy(finalPosition.z));
     vec3 faceNormal = normalize(cross(dFdxPosition, dFdyPosition));
     
-    //gl_FragColor = vec4(faceNormal * 0.5 + 0.5, 1.0);
+    gl_FragColor = vec4(faceNormal * 0.5 + 0.5, 1.0);
+
+    if (isEdge == 1.0) {
+        
+        gl_FragColor = vec4(vec3(0.0, isEdge, 0.0), 1.0);
+    }
 
     /*
     vec3 lightDirection = vec3(1.0, 1.0, 1.0);
@@ -37,5 +43,5 @@ void main(void) {
     float lightAngle = max(dot(faceNormal, lightDirection), 0.0);
     vec3 finalColor = vec3(1.0, 1.0, 1.0) * lightAngle;
 
-    gl_FragColor = vec4(finalColor, 1.0);
+    //gl_FragColor = vec4(finalColor, 1.0);
 }
