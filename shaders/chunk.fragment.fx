@@ -24,7 +24,7 @@ void main(void) {
 
     if (isEdge == 1.0) {
         
-        gl_FragColor = vec4(vec3(0.0, isEdge, 0.0), 1.0);
+       // gl_FragColor = vec4(vec3(0.0, isEdge, 0.0), 1.0);
     }
 
     /*
@@ -43,5 +43,5 @@ void main(void) {
     float lightAngle = max(dot(faceNormal, lightDirection), 0.0);
     vec3 finalColor = vec3(1.0, 1.0, 1.0) * lightAngle;
 
-    //gl_FragColor = vec4(finalColor, 1.0);
+    gl_FragColor = vec4(finalColor, 1.0);
 }
