@@ -1,2 +1,2 @@
-# Procedural
-A procedural openworld landscape city generation.
+# ⛰️ Procedural
+> A procedural openworld landscape city generation.
